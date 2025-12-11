@@ -1,6 +1,8 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi.responses import FileResponse
 import pandas as pd
-
+import uuid
+import os
 from app.services.ingestion import IngestionService
 from app.services.analytics import AnalyticsService
 from app.services.card_generator import CardGeneratorService
@@ -18,6 +20,9 @@ app = FastAPI(
 ingestion_service = IngestionService()
 analytics_service = AnalyticsService()
 card_service = CardGeneratorService()
+
+
+
 
 
 
@@ -102,6 +107,8 @@ async def pipeline_completo(
             preco_promocional=preco_promocional,
             estoque=estoque
         )
+
+        
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro no pipeline completo: {str(e)}")

@@ -70,6 +70,8 @@ class CardGeneratorService:
             caminho_arquivo = os.path.join(self.OUTPUT_DIR, f"card_{produto}_{timestamp}.png")
 
         img.save(caminho_arquivo)
+
+        
         return caminho_arquivo
 
     def gerar_promocao_completa(self, produto: str, preco_atual: float, preco_promocional: float, estoque: int) -> dict:
@@ -77,9 +79,11 @@ class CardGeneratorService:
         texto = self.gerar_texto_oferta(produto, preco_atual, preco_promocional, estoque)
         card_path = self.gerar_card_imagem(produto, preco_atual, preco_promocional)
 
+        
         return {
             "texto_promocao": texto,
             "card_path": card_path
         }
+    
 
 #camada de negocio
